@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en-GB" lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Simple Form Validation using jQuery</title>   
+	<meta name="description" content="Simple Form Validation using jQuery" />
+	<meta name="keywords" content="simple form validation, jQuery, jQuery tutorials, thewebstorebyg wordpress code blog" />
+	<meta name="author" content="Giri Jeedigunta" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>  
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+	
+        <script type="text/javascript">
+ 
+   $(document).ready(function() {
+       alert("call me");
+    $('#myform').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                first_name: {
+                    validators: {
+                        stringLength: {
+                        min: 9,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your name'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
+                    }
+                }
+            },
+            feedback: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description about yourself'
+                    }
+                    }
+                 },	
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+					
+            password: {
+                validators: {
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'Confirm your password below - type same password please'
+                }
+            }
+        },
+            confirmPassword: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                }
+            }
+         },
+			
+            
+            }
+        })
+		
+ 	
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#myform').data('bootstrapValidator').resetForm();
+               
+            // Prevent form submission
+            e.preventDefault();
+ 
+            // Get the form instance
+            var $form = $(e.target);
+                ($form).phone.value
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+ 
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+});
+ 
+ 
+ 
+ </script>
+        
+        
+        
+        
+</head>
+<body>
+       
+        </br>
+        <legend>same form with  bootstrap</legend>
+        <div class='container'>
+            <form action="" role="form" data-toggle="validator" id="myform">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+                </div>
+                <div class ="form-group">
+                <label for="gender">Gender:</label>		
+		<p><input type="radio" id="male" name="gender" /><span>Male</span></p>
+		<p><input type="radio" id="female" name="gender" /><span>Female</span></p>
+		<div class="clear">&#160;</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+ <input type="text" class="form-control" placeholder="Enter Phone" name="phone" data-format="+1 (ddd) ddd-dddd" data-error="Bruh, that email address is invalid" required>
+        
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                </div>
+                <label for="Country">Country:</label>
+                <div class="form-group">
+                        <select id="country">
+			<option selected="selected">Please Select your Country</option>
+			<option value="DZ">Algeria</option>
+			<option value="AS">American Samoa</option>
+			<option value="AD">Andorra</option>
+			<option value="BS">Bahamas</option>
+			<option value="BH">Bahrain</option>
+			<option value="BD">Bangladesh</option>
+			<option value="KH">Cambodia</option>
+			<option value="CM">Cameroon</option>
+			<option value="CA">Canada</option>
+			<option value="DK">Denmark</option>
+			<option value="DJ">Djibouti</option>
+			<option value="DM">Dominica</option>
+			<option value="DO">Dominican Republic</option>
+			<option value="EC">Ecuador</option>
+			<option value="EG">Egypt</option>
+			<option value="SV">El Salvador</option>
+			<option value="FO">Faroe Islands</option>
+			<option value="FJ">Fiji</option>
+			<option value="FI">Finland</option>
+			<option value="GA">Gabon</option>
+			<option value="GM">Gambia</option>
+			<option value="GE">Georgia</option>
+			<option value="HT">Haiti</option>
+			<option value="HN">Honduras</option>
+			<option value="HK">Hong Kong</option>
+			<option value="HU">Hungary</option>
+			<option value="IS">Iceland</option>
+			<option value="IN">India</option>
+			<option value="ID">Indonesia</option>
+			<option value="JM">Jamaica</option>
+			<option value="JP">Japan</option>
+			<option value="JE">Jersey</option>
+			<option value="JO">Jordan</option>
+			<option value="KZ">Kazakhstan</option>
+			<option value="KE">Kenya</option>
+			<option value="KI">Kiribati</option>
+			<option value="LV">Latvia</option>
+			<option value="LB">Lebanon</option>
+			<option value="LS">Lesotho</option>
+			<option value="MG">Madagascar</option>
+			<option value="MW">Malawi</option>
+			<option value="MY">Malaysia</option>
+			<option value="MV">Maldives</option>
+			<option value="ML">Mali</option>
+			<option value="MT">Malta</option>
+			<option value="MH">Marshall Islands</option>
+			<option value="MQ">Martinique</option>
+			<option value="MM">Myanmar</option>
+			<option value="NA">Namibia</option>
+			<option value="NR">Nauru</option>
+			<option value="NP">Nepal</option>
+			<option value="NL">Netherlands</option>
+			<option value="NG">Nigeria</option>
+			<option value="NU">Niue</option>
+			<option value="OM">Oman</option>
+			<option value="PK">Pakistan</option>
+			<option value="PW">Palau</option>
+			<option value="PY">Paraguay</option>
+			<option value="PE">Peru</option>
+			<option value="PH">Philippines</option>
+			<option value="PN">Pitcairn</option>
+			<option value="QA">Qatar</option>
+			<option value="RE">Reunion</option>
+			<option value="RO">Romania</option>
+			<option value="RW">Rwanda</option>
+			<option value="SH">Saint Helena</option>
+			<option value="SC">Seychelles</option>
+			<option value="SL">Sierra Leone</option>
+			<option value="SG">Singapore</option>
+			<option value="SK">Slovakia</option>
+			<option value="SI">Slovenia</option>
+			<option value="SB">Solomon Islands</option>
+			<option value="SO">Somalia</option>
+			<option value="TH">Thailand</option>
+			<option value="TL">Timor-Leste</option>
+			<option value="TG">Togo</option>
+			<option value="TK">Tokelau</option>
+			<option value="TO">Tonga</option>
+			<option value="UG">Uganda</option>
+			<option value="UA">Ukraine</option>
+			<option value="GB">United Kingdom</option>
+			<option value="US">United States</option>
+			<option value="VU">Vanuatu</option>
+			<option value="VE">Venezuela</option>
+			<option value="VN">Viet Nam</option>
+			<option value="WF">Wallis And Futuna</option>
+			<option value="EH">Western Sahara</option>
+			<option value="YE">Yemen</option>
+			<option value="ZM">Zambia</option>
+			<option value="ZW">Zimbabwe</option>
+		</select>
+                </div>
+                <div class="form-group">
+                    <label for="Feedback">Feedback:</label>
+                    <textarea id="feedback" rows="6" cols="40" name="feedback"></textarea>
+                    <div class="clear">&#160;</div>
+                </div>
+                             
+                <div class="checkbox">
+                    <label><input type="checkbox" id="signup" name="newsletters" >Sign-up for our Newsletters:</label>
+                    <div class="clear">&#160;</div>
+                </div>
+                <div class ="form-group">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                </div>
+               
+            </form>
+        </div>
+</body>
+</html>

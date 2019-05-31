@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+            function CheckForm(){ 
+            radios = document.forms[0].elements;
+            var employeeId=radios[0].value;
+            var employeeName=radios[1].value;
+            var password=radios[2].value;
+            var conform_pw=radios[3].value;
+            var doj=radios[4].value;
+            var yoe=radios[6].value;
+            var reg =new RegExp("[a-zA-Z]{2}[0-9]{7}");
+            if(reg.test(employeeId)!=true){
+                alert("employeeId must start with 2 characters followed by 7 numbers");
+                return;              
+            }
+            if(conform_pw!=password){
+                alert("password must match");
+                //location="RWD_assignment.html";
+                return;
+            }
+        var changeTo= "employeeId is:  "+ employeeId+ "<br />"+ "employeeName is :" + employeeName+ "<br />"+ 
+                      "pass word is: "+ password+ "<br />"+ " date of join is: "+ doj+ "<br />"+ 
+                     "year of experience is: "+ yoe;
+        document.getElementById("newpara").innerHTML = changeTo;
+        return;
+            
+        }
+        </script>
+    </head>
+    <body>
+        <header > My Header</header>
+        <div>
+            <nav>
+                <a href="https://www.google.com/" > Linker_one</a>
+                <a href="https://www.google.com/" > Linker_two</a>
+                <a href="https://www.google.com/" > Linker_three</a>
+            </nav>        
+        </div>
+        
+        <div>
+            <form action="" method="GET" id="myform1" >             
+            Employee id: <input type="text" name="emId" required="required" ><br>
+            Employee name: <input type="text" name="name" required="required"><br>
+            Employee password: <input id="password" type="password" name="pw" required="required"><br>
+            Confirm password: <input type="password" name="cpw" required="required" ><br>
+           
+            Date Of Joining: <input type="date" name="dj" required="required" min="1900-01-01" max="2019-05-13"><br>
+            Skill Sets: <select>
+                        <option value="java">Java</option>
+                        <option value="c">C</option>
+                        <option value="cplus">C++</option>
+                        <option value="python">Python</option>
+                        </select>
+            Years Of Experience: <input type="number" name="ye" required="required" min="1" ><br>
+            <input type="submit" value="Submit" onclick='CheckForm(); return false'  >
+            <input type="reset" value="Reset">
+            </form>
+         
+         <p id="newpara"> this is going to change </p>
+         </div>
+        <div>
+        </div>
+        
+        <footer> My Footer</footer>
+    </body>
+</html>

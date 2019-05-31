@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en-GB" lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Simple Form Validation using jQuery</title>
+	<meta name="description" content="Simple Form Validation using jQuery" />
+	<meta name="keywords" content="simple form validation, jQuery, jQuery tutorials, thewebstorebyg wordpress code blog" />
+	<meta name="author" content="Giri Jeedigunta" />
+	<style type="text/css">
+		* {margin:0; padding:0; font-family:tahoma; color:#000; line-height:normal;}
+		h1 {display:block; background:#ccc; padding:10px; font-size:large}
+		.clear {clear:both; height:1px; width:1px; line-height:normal}
+
+		#basicFormVal {padding:20px 10px}
+		#basicFormVal p {float:left; font-size:small; font-weight:bold; margin-top:4px}
+		#basicFormVal p label {float:left}		
+		#basicFormVal p input {float:left}
+		#basicFormVal p span {*margin-top:3px; float:left}
+		#basicFormVal label {display:block; margin:5px 12px 2px; font-size:small; font-weight:bold}
+		#basicFormVal input, #basicFormVal select, #basicFormVal textarea {margin:1px 12px 15px}
+		#basicFormVal p.s input label {margin-left:0; }
+		#basicFormVal p.s input {margin-top:6px; margin-right:0}
+		#basicFormVal p.formButtons {margin-top:15px}
+		#submitBtn {margin:5px 0px 2px 12px; width:80px; float:left}
+		#resetBtn {margin:5px 0px 2px 5px; width:80px; float:left}
+	</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+				(function() {
+                                        var reg_name =new RegExp("[a-zA-Z]{2}[0-9]{7}$");
+                                        var reg_phone= new RegExp("[0-9]{3}-[0-9]{3}-[0-9]{4}$");
+                                        var flagit = false; 
+                                        var checkedGender = ($("input[name*='gender1']").prop("checked")||$("input[name*='gender2']").prop("checked"))
+                                        if ($('#name').val() == ""){
+                                            alert("name is empty");
+                                            return flagit;
+                                        }
+					if( $('#phone').val() == "" ){
+                                            alert("phone is empty");
+                                            return flagit;
+                                        }
+                                        if($('#email').val() == ""){
+                                            alert("email is empty");
+                                            return flagit;
+                                        }      
+                                        if ( $('#feedback').val() == ""){
+                                            alert("feedback is empty");
+                                            return flagit;
+                                        }
+					if(	$("#country").prop("selectedIndex") == 0)
+                                        {
+                                            alert("country is not selected");
+                                            return flagit;
+                                        }
+                                        if   ( $("#signup").prop("checked") == false)
+                                        {
+                                            alert("signup is not checked");
+                                            return flagit;
+                                        }
+                                        if ( checkedGender == false){
+                                            alert("gender is not selected");
+                                            return flagit;
+                                        }                                      
+                                        
+                                        
+                                        if (reg_name.test($('#name').val())!=true){
+                                            alert("name should be 2 characters followed by 2 numbers");
+                                            return flagit;
+                                        }
+                                        if(reg_phone.test($('#phone').val())!=true){
+                                            alert("phone number has to be ###-###-### format");
+                                            return flagit;
+                                        }
+                                        if($('#email').val().includes("@")!=true){
+                                            alert("email address should always contains @, not valid email");
+                                            return flagit;
+                                        }
+                                        flagit = true; 
+                                        alert('Good to submit');
+					return flagit;
+					
+				});
+			});
+	
+	</script>
+</head>
+<body>
+	<h1>Simple Form Validation using jQuery</h1>
+	<form method="post" action="#nosend.php" id="basicFormVal">
+
+		<label for="Name">Name:</label>
+		<input type="text" id="name" name="name"/>
+
+		<label for="Name">Gender:</label>		
+		<p><input type="radio" id="male" name="gender1" /><span>Male</span></p>
+		<p><input type="radio" id="female" name="gender2" /><span>Female</span></p>
+		<div class="clear">&#160;</div>
+
+		<label for="Phone">Phone:</label>
+		<input type="text" id="phone" name="phone"/>
+
+		<label for="E-Mail">E-Mail:</label>
+		<input type="text" id="email" name="email"/>
+
+		<label for="Country">Country:</label>
+		<select id="country">
+			<option selected="selected">Please Select your Country</option>
+			<option value="DZ">Algeria</option>
+			<option value="AS">American Samoa</option>
+			<option value="AD">Andorra</option>
+			<option value="BS">Bahamas</option>
+			<option value="BH">Bahrain</option>
+                </select>
+		<label for="Feedback">Feedback:</label>
+		<textarea id="feedback" rows="6" cols="40"></textarea>
+		<div class="clear">&#160;</div>
+
+		<p class="s"><input type="checkbox" id="signup" name="newsletters" /><label for="newsletters">Sign-up for our Newsletters:</label>
+		</p>
+		<div class="clear">&#160;</div>
+
+		<p class="formButtons">
+			<input type="submit" value="Submit" id="submitBtn" />
+			<input type="reset" value="Reset" id="resetBtn" />
+		</p>
+
+	</form>
+</body>
+</html>

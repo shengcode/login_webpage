@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language='javascript' type='text/javascript'>
+                function checkPassword() {
+                 
+                 var password=document.getElementById('password').value;
+                 var confirmed=document.getElementById('confirmpassword').value;
+                 alert(password);
+                 alert(confirmed)
+                if (password!=confirmed) {
+                     alert("pass word must matching");
+                    //location="RWD_assignment.html";
+                } else {
+                        input.setCustomValidity('');
+                }
+            }
+           </script>
+    </head>
+    <body>
+        <header > My Header</header>
+        <div>
+            <nav>
+                <a href="https://www.google.com/" > Linker_one</a>
+                <a href="https://www.google.com/" > Linker_two</a>
+                <a href="https://www.google.com/" > Linker_three</a>
+            </nav>        
+        </div>
+        
+        <div>
+            <form  method="GET" id="myform1">
+             
+            Employee id: <input type="text" name="emId" required="required" ><br>
+            Employee name: <input type="text" name="name" required="required"><br>
+            Employee password: <input id="password" type="password" name="pw" required="required"><br>
+            Confirm password: <input id ="confirmpassword" type="password" name="cpw" required="required"  /><br>
+            
+            Date Of Joining: <input type="date" name="dj" required="required" min="1900-01-01" max="2019-05-13"><br>
+            Skill Sets: <select>
+                        <option value="java">Java</option>
+                        <option value="c">C</option>
+                        <option value="cplus">C++</option>
+                        <option value="python">Python</option>
+                        </select>
+            Years Of Experience: <input type="number" name="ye" required="required" min="1" ><br>
+            <input type="submit" value="Submit" onclick="checkPassword()">
+            <input type="reset" value="Reset">
+</form>
+         </div>
+        
+        <footer> My Footer</footer>
+    </body>
+</html>
